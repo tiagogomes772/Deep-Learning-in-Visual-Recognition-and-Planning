@@ -1,19 +1,34 @@
 # Deep-Learning-in-Visual-Recognition-and-Planning
 
-Instructions to retrain tensorflow:
+## Install requirements:
 
-Preparing model:
- - Install bazel ( check tensorflow's github for more info )
-    Ubuntu 14.04:
-        - Requirements:
-            sudo add-apt-repository ppa:webupd8team/java
-            sudo apt-get update
-            sudo apt-get install oracle-java8-installer
-        - Download bazel, ( https://github.com/bazelbuild/bazel/releases )
-          tested on: https://github.com/bazelbuild/bazel/releases/download/0.2.0/bazel-0.2.0-jdk7-installer-linux-x86_64.sh
-        - chmod +x PATH_TO_INSTALL.SH
-        - ./PATH_TO_INSTALL.SH --user
-        - Place bazel onto path ( exact path to store shown in the output)
+Install bazel and tensorflow ( check tensorflow's github for more info ) 
+
+### If you have Ubuntu 14.04
+
+Run the following commands
+
+```
+sudo add-apt-repository ppa:webupd8team/java
+```
+```
+sudo apt-get update
+```
+```
+sudo apt-get install oracle-java8-installer
+```
+- Download bazel (version: https://github.com/bazelbuild/bazel/releases/download/0.2.0/bazel-0.2.0-jdk7-installer-linux-x86_64.sh)
+
+```
+-chmod +x PATH_TO_INSTALL.SH
+```
+```
+- ./PATH_TO_INSTALL.SH --user
+```
+- Place bazel onto path ( exact path to store shown in the output)
+
+
+### How to retrain the imagenet from tensorflow
 - For retraining, prepare folder structure as
     - root_folder_name
         - class 1
@@ -24,12 +39,25 @@ Preparing model:
             - file2
 - Clone tensorflow
 - Go to root of tensorflow
-- bazel build tensorflow/examples/image_retraining:retrain
-- bazel-bin/tensorflow/examples/image_retraining/retrain --image_dir /path/to/root_folder_name  --output_graph /path/output_graph.pb --output_labels /path/output_labels.txt --bottleneck_dir /path/bottleneck
-** Training done. **
+```
+sudo bazel build tensorflow/examples/image_retraining:retrain
+```
+```
+sudo bazel-bin/tensorflow/examples/image_retraining/retrain --image_dir /path/to/root_folder_name  --output_graph /path/output_graph.pb --output_labels /path/output_labels.txt --bottleneck_dir /path/bottleneck
+```
+Train done passing for test
 
-How to test it:
+### How to test it:
 
 Run file evaluate_image.py
 
+
+## Cut videos in frames
+
+You must install ffmpeg for this
+
+```
+ffmpeg -i video.mp4 -r 5 image%03d.jpg
+```
+If you need more frames increase the number followed by the flag -r
 
