@@ -61,3 +61,21 @@ ffmpeg -i video.mp4 -r 5 image%03d.jpg
 ```
 If you need more frames increase the number followed by the flag -r
 
+
+##Run with kinect 2
+```
+roslaunch kinect2_bridge kinect2_bridge.launch
+```
+
+## Run evaluate images to get images and save them
+ In ros directory
+``` 
+ source devel/setup.bash
+```
+Then run 
+
+```
+rosrun kinect_images save_image.py 
+
+```
+
